@@ -1,19 +1,9 @@
 {
-  "name": "symbols-view",
+  "name": "symbols-view-plus",
   "version": "0.113.0",
   "main": "./lib/main",
-  "description": "Jump to a function/method in the current editor with `cmd-r`.",
+  "description": "An alternative to atom/symbols-view",
   "license": "MIT",
-  "activationCommands": {
-    "atom-workspace": [
-      "symbols-view:toggle-project-symbols"
-    ],
-    "atom-text-editor": [
-      "symbols-view:go-to-declaration",
-      "symbols-view:return-from-declaration",
-      "symbols-view:toggle-file-symbols"
-    ]
-  },
   "dependencies": {
     "async": "^0.2.6",
     "atom-space-pen-views": "^2.0.0",
@@ -36,7 +26,7 @@
       "description": "Automatically visit selected file-symbols"
     }
   },
-  "repository": "https://github.com/atom/symbols-view",
+  "repository": "https://github.com/aidistan/atom-symbols-view-plus",
   "engines": {
     "atom": "*"
   },

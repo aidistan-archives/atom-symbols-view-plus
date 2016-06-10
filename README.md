@@ -1,17 +1,15 @@
-# Symbols View package [![Build Status](https://travis-ci.org/atom/symbols-view.svg?branch=master)](https://travis-ci.org/atom/symbols-view)
+# Symbols View Plus package
 
-Display the list of functions/methods in the editor via `cmd-r` in Atom.
+An alternative to [atom/symbols-view](https://github.com/atom/symbols-view)
 
-If your project has a `tags`/`.tags`/`TAGS`/`.TAGS` file at the root then
-following are supported:
+**This package is under development. Please come back later~**
 
-|Command|Description|Keybinding (Linux)|Keybinding (OS X)|Keybinding (Windows)|
-|-------|-----------|------------------|-----------------|--------------------|
-|`symbols-view:toggle-file-symbols`|Show all symbols in current file|<kbd>ctrl-r</kbd>|<kbd>cmd-r</kbd>|<kbd>ctrl-r</kbd>|
-|`symbols-view:toggle-project-symbols`|Show all symbols in the project|<kbd>ctrl-shift-R</kbd>|<kbd>cmd-shift-R</kbd>|<kbd>ctrl-shift-R</kbd>|
-|`symbols-view:go-to-declaration`|Jump to the symbol under the cursor|<kbd>ctrl-alt-down</kbd>|<kbd>cmd-alt-down</kbd>||
-|`symbols-view:return-from-declaration`|Return from the jump|<kbd>ctrl-alt-up</kbd>|<kbd>cmd-alt-up</kbd>||
+## License
 
-This package uses [ctags](http://ctags.sourceforge.net).
+[The MIT License](https://github.com/aidistan/atom-symbols-view-plus/blob/master/LICENSE.md)
 
-![](https://f.cloud.github.com/assets/671378/2241860/30ef0b2e-9ce8-11e3-86e2-2c17c0885fa4.png)
+## References
+
+- [yongkangchen/atom-ctags](https://github.com/yongkangchen/atom-ctags) : Better autocomplete for atom, using ctags
+- [7ute/symbols-list](https://github.com/7ute/symbols-list) : An alternate symbol list sidebar for Atom.io text editor
+- [xndcn/symbols-tree-view](https://github.com/xndcn/symbols-tree-view) : A symbols view like taglist for Atom.io

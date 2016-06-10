@@ -10,7 +10,7 @@ class TagGenerator
     {resourcePath} = atom.getLoadSettings()
     if path.extname(resourcePath) is '.asar'
       if packageRoot.indexOf(resourcePath) is 0
-        packageRoot = path.join("#{resourcePath}.unpacked", 'node_modules', 'symbols-view')
+        packageRoot = path.join("#{resourcePath}.unpacked", 'node_modules', 'symbols-view-plus')
     packageRoot
 
   parseTagLine: (line) ->
@@ -60,7 +60,7 @@ class TagGenerator
     defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
     args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
 
-    if atom.config.get('symbols-view.useEditorGrammarAsCtagsLanguage')
+    if atom.config.get('symbols-view-plus.useEditorGrammarAsCtagsLanguage')
       if language = @getLanguage()
         args.push("--language-force=#{language}")
 
