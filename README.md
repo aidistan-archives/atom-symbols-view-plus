@@ -4,6 +4,15 @@ An alternative to [atom/symbols-view](https://github.com/atom/symbols-view)
 
 **This package is under development. Please come back later~**
 
+## Roadmap
+
+- [ ] Build project symbols
+  - [ ] Provide as a command
+  - [ ] Consider timeout
+  - [ ] Allow incremental update
+- [ ] Provide for autocomplete
+- [ ] Sidebar-style symbol list
+
 ## License
 
 [The MIT License](https://github.com/aidistan/atom-symbols-view-plus/blob/master/LICENSE.md)
