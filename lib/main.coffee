@@ -6,6 +6,7 @@ module.exports =
       atom.packages.disablePackage("symbols-view")
 
     @workspaceSubscription = atom.commands.add 'atom-workspace',
+      'symbols-view-plus:generate-project-symbols': => @generateProjectSymbols()
       'symbols-view-plus:toggle-project-symbols': => @createProjectView().toggle()
 
     @editorSubscription = atom.commands.add 'atom-text-editor',
@@ -61,3 +62,9 @@ module.exports =
       GoBackView = require './go-back-view'
       @goBackView = new GoBackView(@stack)
     @goBackView
+
+  generateProjectSymbols: ->
+    unless @tagGenerator?
+      TagGenerator = require './tag-generator'
+      @tagGenerator = new TagGenerator(null, null)
+    @tagGenerator.generateProjectSymbols()

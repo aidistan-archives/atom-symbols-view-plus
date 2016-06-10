@@ -79,3 +79,19 @@ class TagGenerator
           tags = (tag for row, tag of tags)
           resolve(tags)
       })
+
+  generateProjectSymbols: ->
+    tags = {}
+    packageRoot = @getPackageRoot()
+    command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
+    defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
+    args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
+
+    # TODO: support user defined CmdArgs
+    args.push('--exclude=@.gitignore')
+
+    args.push('-f', '.tags', '-R', './')
+
+    atom.project.getDirectories().forEach (directory) ->
+      options = {cwd: directory.getPath()}
+      new BufferedProcess({command, args, options})
