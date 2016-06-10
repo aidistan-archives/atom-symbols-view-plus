@@ -5,7 +5,7 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 ## Roadmap
 
 - [x] Generate project symbols
-- [ ] Provide for autocomplete
+- [x] Provide service for autocomplete-plus
 - [ ] Sidebar-style symbol list
 
 ## Features

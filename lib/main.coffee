@@ -81,3 +81,9 @@ module.exports =
 
   generateProjectSymbols: ->
     new TagGenerator(null, null).generateProjectSymbols()
+
+  provideAutocomplete: ->
+    unless @autocompleteProvider?
+      AutocompleteProvider = require './autocomplete-provider'
+      @autocompleteProvider = new AutocompleteProvider(@createProjectView())
+    @autocompleteProvider

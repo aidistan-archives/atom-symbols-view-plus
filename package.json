@@ -14,6 +14,13 @@
     "temp": "~0.8.1",
     "underscore-plus": "~1.6.6"
   },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "provideAutocomplete"
+      }
+    }
+  },
   "configSchema": {
     "useEditorGrammarAsCtagsLanguage": {
       "default": true,
