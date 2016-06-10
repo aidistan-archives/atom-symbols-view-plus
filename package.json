@@ -24,11 +24,23 @@
       "default": true,
       "type": "boolean",
       "description": "Automatically visit selected file-symbols"
+    },
+    "plusConfigurations": {
+      "title": "Plus Configurations",
+      "type": "object",
+      "properties": {
+        "extraCommandArgumentsForProjectSymbolGeneration": {
+          "title": "Extra Command Arguments For Project Symbol Generation",
+          "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which usually are exclusive patterns, when generating project symbols, like `--exclude=node_modules --exclude=spec --exclude=*.html`. Default is to exclude all files ignored by git.",
+          "type": "string",
+          "default": "--exclude=@.gitignore"
+        }
+      }
     }
   },
   "repository": "https://github.com/aidistan/atom-symbols-view-plus",
   "engines": {
-    "atom": "*"
+    "atom": ">=1.7.0 <2.0.0"
   },
   "devDependencies": {
     "coffeelint": "^1.9.7"

@@ -110,8 +110,7 @@ class TagGenerator
     defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
     args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
 
-    # TODO: support user defined CmdArgs
-    args.push('--exclude=@.gitignore')
+    args.push(atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsForProjectSymbolGeneration'))
 
     args.push('-f', '.tags', '-R', './')
 
