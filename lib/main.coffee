@@ -1,3 +1,6 @@
+{CompositeDisposable} = require 'atom'
+TagGenerator = require './tag-generator'
+
 module.exports =
   activate: ->
     @stack = []
@@ -13,6 +16,17 @@ module.exports =
       'symbols-view-plus:toggle-file-symbols': => @createFileView().toggle()
       'symbols-view-plus:go-to-declaration': => @createGoToView().toggle()
       'symbols-view-plus:return-from-declaration': => @createGoBackView().toggle()
+
+    @editorsSubscription = atom.workspace.observeTextEditors (editor) =>
+      generateFileSymbols = ->
+        new TagGenerator(editor.getPath(), editor.getGrammar()?.scopeName).generateFileSymbols()
+      editorSubscriptions = new CompositeDisposable()
+      editorSubscriptions.add(editor.onDidChangeGrammar(generateFileSymbols))
+      editorSubscriptions.add(editor.onDidSave(generateFileSymbols))
+      editorSubscriptions.add(editor.onDidChangePath(@generateProjectSymbols))
+      editorSubscriptions.add(editor.getBuffer().onDidReload(generateFileSymbols))
+      # editorSubscriptions.add(editor.getBuffer().onDidDestroy(@generateProjectSymbols))
+      editor.onDidDestroy -> editorSubscriptions.dispose()
 
   deactivate: ->
     if @fileView?
@@ -39,6 +53,8 @@ module.exports =
       @editorSubscription.dispose()
       @editorSubscription = null
 
+    @editorsSubscription.dispose()
+
   createFileView: ->
     unless @fileView?
       FileView  = require './file-view'
@@ -64,7 +80,4 @@ module.exports =
     @goBackView
 
   generateProjectSymbols: ->
-    unless @tagGenerator?
-      TagGenerator = require './tag-generator'
-      @tagGenerator = new TagGenerator(null, null)
-    @tagGenerator.generateProjectSymbols()
+    new TagGenerator(null, null).generateProjectSymbols()

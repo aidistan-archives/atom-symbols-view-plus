@@ -80,6 +80,29 @@ class TagGenerator
           resolve(tags)
       })
 
+  generateFileSymbols: ->
+    for directory in atom.project.getDirectories()
+      dirPath = directory.getPath()
+      if dirPath is @path or directory.contains(@path)
+        projectPath = dirPath
+        break
+    return unless projectPath?
+
+    tags = {}
+    packageRoot = @getPackageRoot()
+    command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
+    defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
+    args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
+
+    if atom.config.get('symbols-view-plus.useEditorGrammarAsCtagsLanguage')
+      if language = @getLanguage()
+        args.push("--language-force=#{language}")
+
+    args.push('--append=yes', '-f', '.tags', @path.replace(projectPath, '.'))
+
+    options = {cwd: projectPath}
+    new BufferedProcess({command, args, options})
+
   generateProjectSymbols: ->
     tags = {}
     packageRoot = @getPackageRoot()

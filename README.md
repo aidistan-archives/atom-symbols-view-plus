@@ -6,10 +6,9 @@ An alternative to [atom/symbols-view](https://github.com/atom/symbols-view)
 
 ## Roadmap
 
-- [ ] Build project symbols
+- [x] Generate project symbols
   - [x] Provide as a command
-  - [ ] Consider timeout
-  - [ ] Allow incremental update
+  - [x] Allow incremental update
 - [ ] Provide for autocomplete
 - [ ] Sidebar-style symbol list
 
