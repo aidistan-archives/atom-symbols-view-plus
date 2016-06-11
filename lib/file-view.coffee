@@ -36,7 +36,7 @@ class FileView extends SymbolsView
         return $$ ->
           @li class: 'two-lines', =>
             @div class: 'primary-line', =>
-              @span class: 'icon icon-' + kind
+              @span class: 'icon icon-' + kind.replace(' ', '-')
               @span => FileView.highlightMatches(this, name, matches)
             @div "Line #{position.row + 1}", class: 'secondary-line'
 

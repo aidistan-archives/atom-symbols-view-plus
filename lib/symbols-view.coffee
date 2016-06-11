@@ -29,7 +29,7 @@ class SymbolsView extends SelectListView
   initialize: (@stack) ->
     super
 
-    @theme = atom.config.get('symbols-view-plus.plusConfigurations.symbolsViewTheme')
+    @theme = atom.config.get('symbols-view-plus.plusConfigurations.symbolsViewTheme').split(' ')[0].toLowerCase()
     @panel = switch @theme
       when 'right' then atom.workspace.addRightPanel(item: this, visible: false)
       when 'modal' then atom.workspace.addModalPanel(item: this, visible: false)
@@ -54,11 +54,11 @@ class SymbolsView extends SelectListView
           @li class: 'two-lines', =>
             if position?
               @div class: 'primary-line', =>
-                @span class: 'icon icon-' + kind
+                @span class: 'icon icon-' + kind.replace(' ', '-')
                 @span "#{name}:#{position.row + 1}"
             else
               @div class: 'primary-line', =>
-                @span class: 'icon icon-' + kind
+                @span class: 'icon icon-' + kind.replace(' ', '-')
                 @span => SymbolsView.highlightMatches(this, name, matches)
             @div file, class: 'secondary-line'
 

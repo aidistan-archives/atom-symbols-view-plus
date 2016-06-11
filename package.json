@@ -65,16 +65,10 @@
           "title": "Symbols View Theme",
           "order": 5,
           "type": "string",
-          "default": "right",
+          "default": "Right Panel (like 7ute/symbols-list)",
           "enum": [
-            {
-              "value": "right",
-              "description": "Panel view at right side"
-            },
-            {
-              "value": "modal",
-              "description": "Original modal view"
-            }
+            "Right Panel (like 7ute/symbols-list)",
+            "Modal Panel (like atom/symbols-view)"
           ]
         }
       }
