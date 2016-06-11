@@ -110,7 +110,7 @@ class TagGenerator
     defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
     args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
 
-    args.push(atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsForProjectSymbolGeneration'))
+    args.push(atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsWhenGeneratingProjectSymbols'))
 
     args.push('-f', '.tags', '-R', './')
 

@@ -1,4 +1,4 @@
-{CompositeDisposable} = require 'atom'
+FileChangeWatcher = require './file-change-watcher'
 TagGenerator = require './tag-generator'
 
 module.exports =
@@ -9,24 +9,16 @@ module.exports =
       atom.packages.disablePackage("symbols-view")
 
     @workspaceSubscription = atom.commands.add 'atom-workspace',
-      'symbols-view-plus:generate-project-symbols': => @generateProjectSymbols()
       'symbols-view-plus:toggle-project-symbols': => @createProjectView().toggle()
+      'symbols-view-plus:generate-project-symbols': ->
+        new TagGenerator(null, null).generateProjectSymbols()
 
     @editorSubscription = atom.commands.add 'atom-text-editor',
       'symbols-view-plus:toggle-file-symbols': => @createFileView().toggle()
       'symbols-view-plus:go-to-declaration': => @createGoToView().toggle()
       'symbols-view-plus:return-from-declaration': => @createGoBackView().toggle()
 
-    @editorsSubscription = atom.workspace.observeTextEditors (editor) =>
-      generateFileSymbols = ->
-        new TagGenerator(editor.getPath(), editor.getGrammar()?.scopeName).generateFileSymbols()
-      editorSubscriptions = new CompositeDisposable()
-      editorSubscriptions.add(editor.onDidChangeGrammar(generateFileSymbols))
-      editorSubscriptions.add(editor.onDidSave(generateFileSymbols))
-      editorSubscriptions.add(editor.onDidChangePath(@generateProjectSymbols))
-      editorSubscriptions.add(editor.getBuffer().onDidReload(generateFileSymbols))
-      # editorSubscriptions.add(editor.getBuffer().onDidDestroy(@generateProjectSymbols))
-      editor.onDidDestroy -> editorSubscriptions.dispose()
+    @fileChangeWatcher = new FileChangeWatcher()
 
   deactivate: ->
     if @fileView?
@@ -53,7 +45,7 @@ module.exports =
       @editorSubscription.dispose()
       @editorSubscription = null
 
-    @editorsSubscription.dispose()
+    @fileChangeWatcher.dismiss()
 
   createFileView: ->
     unless @fileView?
@@ -78,9 +70,6 @@ module.exports =
       GoBackView = require './go-back-view'
       @goBackView = new GoBackView(@stack)
     @goBackView
-
-  generateProjectSymbols: ->
-    new TagGenerator(null, null).generateProjectSymbols()
 
   provideAutocomplete: ->
     unless @autocompleteProvider?

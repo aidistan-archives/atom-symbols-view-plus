@@ -36,11 +36,24 @@
       "title": "Plus Configurations",
       "type": "object",
       "properties": {
-        "extraCommandArgumentsForProjectSymbolGeneration": {
-          "title": "Extra Command Arguments For Project Symbol Generation",
+        "extraCommandArgumentsWhenGeneratingProjectSymbols": {
+          "title": "Extra Command Arguments When Generating Project Symbols",
           "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which usually are exclusive patterns, when generating project symbols, like `--exclude=node_modules --exclude=spec --exclude=*.html`. Default is to exclude all files ignored by git.",
+          "order": 1,
           "type": "string",
           "default": "--exclude=@.gitignore"
+        },
+        "updateProjectTagsOnFileChange": {
+          "title": "Update Project Tags On File Change",
+          "order": 2,
+          "type": "boolean",
+          "default": "true"
+        },
+        "provideServiceForAutocomplete": {
+          "title": "Provide Service For Autocomplete",
+          "order": 3,
+          "type": "boolean",
+          "default": "true"
         }
       }
     }

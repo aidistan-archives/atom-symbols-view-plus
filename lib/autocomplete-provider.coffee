@@ -17,6 +17,8 @@ class AutocompleteProvider
       maxResults: options.maxResults or @defaultOptions.maxResults
 
   getSuggestions: ({editor, bufferPosition, scopeDescriptor, prefix, activatedManually}) ->
+    return null unless atom.config.get('symbols-view-plus.plusConfigurations.provideServiceForAutocomplete')
+
     filter(@projectView.tags, prefix, key: 'name', maxResults: @options.maxResults)
       .map (tag) ->
         text: tag.name
