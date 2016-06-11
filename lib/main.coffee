@@ -1,5 +1,6 @@
-ProjectSymbolsManager = require './project-symbols-manager'
 TagGenerator = require './tag-generator'
+AutocompleteProvider = require './plus/autocomplete-provider'
+OnFileChangeUpdater = require './plus/on-file-change-updater'
 
 module.exports =
   activate: ->
@@ -18,7 +19,14 @@ module.exports =
       'symbols-view-plus:go-to-declaration': => @createGoToView().toggle()
       'symbols-view-plus:return-from-declaration': => @createGoBackView().toggle()
 
-    @projectSymbolsManager = new ProjectSymbolsManager()
+    @onFileChangeUpdater = new OnFileChangeUpdater()
+
+    atom.config.observe 'symbols-view-plus.plusConfigurations.symbolsViewTheme', =>
+      @fileView?.destroy();    @fileView = null
+      @projectView?.destroy(); @projectView = null
+      @goToView?.destroy();    @goToView = null
+      @goBackView?.destroy();  @goBackView = null
+      @autocompleteProvider?.update(@createProjectView())
 
   deactivate: ->
     if @fileView?
@@ -45,7 +53,7 @@ module.exports =
       @editorSubscription.dispose()
       @editorSubscription = null
 
-    @projectSymbolsManager.retire()
+    @onFileChangeUpdater.disable()
 
   createFileView: ->
     unless @fileView?
@@ -72,7 +80,4 @@ module.exports =
     @goBackView
 
   provideAutocomplete: ->
-    unless @autocompleteProvider?
-      AutocompleteProvider = require './autocomplete-provider'
-      @autocompleteProvider = new AutocompleteProvider(@createProjectView())
-    @autocompleteProvider
+    @autocompleteProvider ||= new AutocompleteProvider(@createProjectView())

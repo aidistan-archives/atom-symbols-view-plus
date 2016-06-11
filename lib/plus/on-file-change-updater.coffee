@@ -1,14 +1,7 @@
 {CompositeDisposable} = require 'atom'
-TagGenerator = require './tag-generator'
+TagGenerator = require '../tag-generator'
 
 module.exports =
-class ProjectSymbolsManager
-  constructor: ->
-    @onFileChangeUpdater = new OnFileChangeUpdater()
-
-  retire: ->
-    @onFileChangeUpdater.disable()
-
 class OnFileChangeUpdater
   constructor: ->
     @toggle(atom.config.get('symbols-view-plus.plusConfigurations.updateProjectTagsOnFileChange'))
