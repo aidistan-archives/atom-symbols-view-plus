@@ -43,21 +43,27 @@
           "type": "string",
           "default": "--exclude=@.gitignore"
         },
-        "updateProjectTagsOnFileChange": {
-          "title": "Update Project Tags On File Change",
+        "updateProjectTagsAfterTogglingFileSymbols": {
+          "title": "Update Project Tags After Toggling File Symbols",
           "order": 2,
           "type": "boolean",
           "default": "true"
         },
+        "updateProjectTagsOnFileChange": {
+          "title": "Update Project Tags On File Change",
+          "order": 3,
+          "type": "boolean",
+          "default": "false"
+        },
         "provideServiceForAutocomplete": {
           "title": "Provide Service For Autocomplete",
-          "order": 3,
+          "order": 4,
           "type": "boolean",
           "default": "true"
         },
         "symbolsViewTheme": {
           "title": "Symbols View Theme",
-          "order": 3,
+          "order": 5,
           "type": "string",
           "default": "right",
           "enum": [

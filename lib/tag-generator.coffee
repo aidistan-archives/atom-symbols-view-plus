@@ -76,9 +76,11 @@ class TagGenerator
             if tag = @parseTagLine(line)
               tags[tag.position.row] ?= tag
         stderr: ->
-        exit: ->
+        exit: =>
           tags = (tag for row, tag of tags)
           resolve(tags)
+
+          @generateFileSymbols() if atom.config.get('symbols-view-plus.plusConfigurations.updateProjectTagsAfterTogglingFileSymbols')
       })
 
   generateFileSymbols: ->

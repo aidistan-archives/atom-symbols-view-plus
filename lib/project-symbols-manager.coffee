@@ -2,14 +2,14 @@
 TagGenerator = require './tag-generator'
 
 module.exports =
-class FileChangeWatcher
+class ProjectSymbolsManager
   constructor: ->
-    @projectTagsUpdater = new ProjectTagsUpdater()
+    @onFileChangeUpdater = new OnFileChangeUpdater()
 
-  dismiss: ->
-    @projectTagsUpdater.disable()
+  retire: ->
+    @onFileChangeUpdater.disable()
 
-class ProjectTagsUpdater
+class OnFileChangeUpdater
   constructor: ->
     @toggle(atom.config.get('symbols-view-plus.plusConfigurations.updateProjectTagsOnFileChange'))
     atom.config.observe 'symbols-view-plus.plusConfigurations.updateProjectTagsOnFileChange', (newValue) => @toggle(newValue)

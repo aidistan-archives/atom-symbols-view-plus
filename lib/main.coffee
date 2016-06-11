@@ -1,4 +1,4 @@
-FileChangeWatcher = require './file-change-watcher'
+ProjectSymbolsManager = require './project-symbols-manager'
 TagGenerator = require './tag-generator'
 
 module.exports =
@@ -18,7 +18,7 @@ module.exports =
       'symbols-view-plus:go-to-declaration': => @createGoToView().toggle()
       'symbols-view-plus:return-from-declaration': => @createGoBackView().toggle()
 
-    @fileChangeWatcher = new FileChangeWatcher()
+    @projectSymbolsManager = new ProjectSymbolsManager()
 
   deactivate: ->
     if @fileView?
@@ -45,7 +45,7 @@ module.exports =
       @editorSubscription.dispose()
       @editorSubscription = null
 
-    @fileChangeWatcher.dismiss()
+    @projectSymbolsManager.retire()
 
   createFileView: ->
     unless @fileView?
