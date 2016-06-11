@@ -1,5 +1,6 @@
 ## Latest version
 - Allow more package configurations
+- Provide a new theme of symbols view
 
 ## 0.113.0-plus.3
 - Provide service for autocomplete-plus
@@ -9,5 +10,5 @@
 - Update the project tag file incrementally on file change
 - Allow user to add extra ctag command arguments
 
-## 0.113.0-plus.1
+## 0.113.0-plus.1 - First version
 - Fork from atom/symbols-view

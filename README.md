@@ -2,26 +2,22 @@
 
 An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
-## Roadmap
-
-- [x] Generate project symbols
-- [x] Provide service for autocomplete-plus
-- [x] Sidebar-style symbol list
-
 ## Features
 
 - Generate project symbols
   - Provide a command to generate the tag file of whole project
   - Update the project tag file incrementally on file save
   - Allow user to add extra ctag command arguments
+- Provide service for autocomplete-plus
+  - Project symbols are provided for autocomplete-plus automatically
+- Provide a new theme of symbols view
+  - Right-sidebar theme now works as default
 
 ## Usage
 
-Basic usage is the same as [atom/symbols-view](https://atom.io/packages/symbols-view).
+Basic usage is the same as [atom/symbols-view](https://atom.io/packages/symbols-view). While most of new features work in the background automatically, meet them in the package configurations!
 
-### Project Symbols
-
-To generate project symbols manually, type `generate project symbols` in the Command Palette (`ctrl+shift+p` or `cmd+shift+p`) and press `Enter`. A *.tags* file will appear at the root of your project in a few seconds and you may want to [gitignore *.tags* files globally](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore).
+Only one command you could call manually: to generate project symbols, type `generate project symbols` in the Command Palette (`ctrl+shift+p` or `cmd+shift+p`) and press `Enter`. A *.tags* file will appear at the root of your project in a few seconds and you may want to [gitignore *.tags* files globally](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore).
 
 ## License
 
