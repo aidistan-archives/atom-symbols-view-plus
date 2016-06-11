@@ -54,6 +54,22 @@
           "order": 3,
           "type": "boolean",
           "default": "true"
+        },
+        "symbolsViewTheme": {
+          "title": "Symbols View Theme",
+          "order": 3,
+          "type": "string",
+          "default": "right",
+          "enum": [
+            {
+              "value": "right",
+              "description": "Panel view at right side"
+            },
+            {
+              "value": "modal",
+              "description": "Original modal view"
+            }
+          ]
         }
       }
     }

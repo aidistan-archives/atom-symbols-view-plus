@@ -27,9 +27,18 @@ class FileView extends SymbolsView
     @editorsSubscription.dispose()
     super
 
-  viewForItem: ({position, name}) ->
+  viewForItem: ({position, name, kind}) ->
     # Style matched characters in search results
     matches = match(name, @getFilterQuery())
+
+    switch @theme
+      when 'right'
+        return $$ ->
+          @li class: 'two-lines', =>
+            @div class: 'primary-line', =>
+              @span class: 'icon icon-' + kind
+              @span => FileView.highlightMatches(this, name, matches)
+            @div "Line #{position.row + 1}", class: 'secondary-line'
 
     $$ ->
       @li class: 'two-lines', =>

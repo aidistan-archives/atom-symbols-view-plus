@@ -1,7 +1,82 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
 @import "ui-variables";
 
-// Highlight matched text
-.symbols-view-plus .list-group .character-match {
-  color: @text-color-highlight;
-  font-weight: bold;
+.symbols-view-plus {
+  // Highlight matched text
+  .list-group .character-match {
+    color: @text-color-highlight;
+
+    font-weight: bold;
+  }
+}
+
+.symbols-view-plus.symbols-view-plus--right {
+  width: 200px;
+
+  atom-text-editor[mini],
+  atom-text-editor[mini].is-focused {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  ol.list-group {
+    position: absolute;
+    top: 41px;
+    bottom: 0;
+
+    width: 100%;
+    max-height: none;
+    margin: 0;
+
+    li {
+      padding: 2px 5px;
+    }
+
+    span.icon {
+      position: relative;
+
+      width: @component-icon-size;
+      height: @component-icon-size;
+      margin-right: @component-icon-padding;
+
+      vertical-align: sub;
+
+      border-radius: @component-border-radius;
+      background: #888;
+
+      font-weight: bold;
+    }
+
+    span.icon::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: @component-icon-size;
+
+      content: "/";
+      text-align: center;
+
+      color: #DDD;
+
+      font-size: @font-size;
+      line-height: @component-icon-size;
+    }
+
+    span.icon-function { background: #3996e3; }
+    span.icon-function::before { content: "F"; color: #FFF;}
+    span.icon-method { background: #3996e3; }
+    span.icon-method::before { content: "M"; color: #FFF;}
+
+    span.icon-class { background: #ee8a1e; }
+    span.icon-class::before { content: "C"; color: #FFF;}
+    span.icon-module { background: #ee8a1e; }
+    span.icon-module::before { content: "M"; color: #FFF;}
+
+    span.icon-variable { background: #823da2; }
+    span.icon-variable::before { content: "V"; color: #FFF;}
+  }
 }

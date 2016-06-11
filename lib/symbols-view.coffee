@@ -28,8 +28,12 @@ class SymbolsView extends SelectListView
 
   initialize: (@stack) ->
     super
-    @panel = atom.workspace.addModalPanel(item: this, visible: false)
-    @addClass('symbols-view-plus')
+
+    @theme = atom.config.get('symbols-view-plus.plusConfigurations.symbolsViewTheme')
+    @panel = switch @theme
+      when 'right' then atom.workspace.addRightPanel(item: this, visible: false)
+      when 'modal' then atom.workspace.addModalPanel(item: this, visible: false)
+    @addClass('symbols-view-plus symbols-view-plus--' + @theme)
 
   destroy: ->
     @cancel()
@@ -37,12 +41,26 @@ class SymbolsView extends SelectListView
 
   getFilterKey: -> 'name'
 
-  viewForItem: ({position, name, file, directory}) ->
+  viewForItem: ({position, name, kind, file, directory}) ->
     # Style matched characters in search results
     matches = match(name, @getFilterQuery())
 
     if atom.project.getPaths().length > 1
       file = path.join(path.basename(directory), file)
+
+    switch @theme
+      when 'right'
+        return $$ ->
+          @li class: 'two-lines', =>
+            if position?
+              @div class: 'primary-line', =>
+                @span class: 'icon icon-' + kind
+                @span "#{name}:#{position.row + 1}"
+            else
+              @div class: 'primary-line', =>
+                @span class: 'icon icon-' + kind
+                @span => SymbolsView.highlightMatches(this, name, matches)
+            @div file, class: 'secondary-line'
 
     $$ ->
       @li class: 'two-lines', =>

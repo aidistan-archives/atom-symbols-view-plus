@@ -18,6 +18,7 @@ class TagGenerator
     if sections.length > 3
       position: new Point(parseInt(sections[2]) - 1)
       name: sections[0]
+      kind: sections[3]
     else
       null
 

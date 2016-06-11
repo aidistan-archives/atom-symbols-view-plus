@@ -6,7 +6,7 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
 - [x] Generate project symbols
 - [x] Provide service for autocomplete-plus
-- [ ] Sidebar-style symbol list
+- [x] Sidebar-style symbol list
 
 ## Features
 
