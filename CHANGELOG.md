@@ -1,4 +1,6 @@
-## Latest version
+## Dev version
+
+## 0.113.0-plus.4
 - Allow more package configurations
 - Provide a new theme of symbols view
 
