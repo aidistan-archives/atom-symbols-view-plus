@@ -2,6 +2,8 @@
 
 An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
+**This package is currently unable to install due to [atom/apm#575](https://github.com/atom/apm/issues/575). Please come back later.**
+
 ## Features
 
 - Generate project symbols
