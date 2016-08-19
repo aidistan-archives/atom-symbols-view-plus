@@ -1,6 +1,6 @@
 {
   "name": "symbols-view-plus",
-  "version": "0.113.0-plus.3",
+  "version": "0.113.1",
   "main": "./lib/main",
   "description": "An alternative to atom/symbols-view",
   "license": "MIT",
