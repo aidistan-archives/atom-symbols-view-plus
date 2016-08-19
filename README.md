@@ -1,8 +1,11 @@
 # Symbols View Plus package
 
+[![Build Status](https://travis-ci.org/aidistan/atom-symbols-view-plus.svg?branch=master)](https://travis-ci.org/aidistan/atom-symbols-view-plus)
+[![Build status](https://ci.appveyor.com/api/projects/status/xwvan82oo42t6qmu?svg=true)](https://ci.appveyor.com/project/aidistan/atom-symbols-view-plus)
+
 An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
-**This package is currently unable to install due to [atom/apm#575](https://github.com/atom/apm/issues/575). Please come back later.**
+**Due to [atom/apm#575](https://github.com/atom/apm/issues/575), please use `apm install aidistan/atom-symbols-view-plus` to install this package.**
 
 ## Features
 
@@ -17,9 +20,9 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
 ## Usage
 
-Basic usage is the same as [atom/symbols-view](https://atom.io/packages/symbols-view). While most of new features work in the background automatically, meet them in the package configurations!
+Basic usage is the same as [atom/symbols-view](https://atom.io/packages/symbols-view), which should be familiar to all Atom users.
 
-Only one command you could call manually: to generate project symbols, type `generate project symbols` in the Command Palette (`ctrl+shift+p` or `cmd+shift+p`) and press `Enter`. A *.tags* file will appear at the root of your project in a few seconds and you may want to [gitignore *.tags* files globally](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore).
+To generate project symbols, type `generate project symbols` in the Command Palette (`ctrl+shift+p` or `cmd+shift+p`) and press `Enter`. A *.tags* file will be generated at the root of your project in a few seconds and you may want to [gitignore *.tags* files globally](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore).
 
 ## License
 
