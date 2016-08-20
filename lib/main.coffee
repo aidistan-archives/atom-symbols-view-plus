@@ -26,7 +26,6 @@ module.exports =
       @projectView?.destroy(); @projectView = null
       @goToView?.destroy();    @goToView = null
       @goBackView?.destroy();  @goBackView = null
-      @autocompleteProvider?.update(@createProjectView())
 
   deactivate: ->
     if @fileView?
@@ -80,4 +79,4 @@ module.exports =
     @goBackView
 
   provideAutocomplete: ->
-    @autocompleteProvider ||= new AutocompleteProvider(@createProjectView())
+    @autocompleteProvider ||= new AutocompleteProvider()
