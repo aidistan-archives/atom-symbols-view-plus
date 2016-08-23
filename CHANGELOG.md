@@ -1,4 +1,6 @@
 ## Dev version
+
+## 0.113.1-plus.2
 - Update TagGenerator for better cwd handling
 
 ## 0.113.1-plus.1
