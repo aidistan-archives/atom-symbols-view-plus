@@ -546,7 +546,7 @@ describe "SymbolsView", ->
 
   describe "when useEditorGrammarAsCtagsLanguage is set to true", ->
     it "uses the language associated with the editor's grammar", ->
-      atom.config.set('symbols-view-plus.useEditorGrammarAsCtagsLanguage', true)
+      atom.config.set('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage', true)
 
       waitsForPromise ->
         atom.packages.activatePackage('language-javascript')
@@ -704,7 +704,7 @@ describe "SymbolsView", ->
 
   describe "when quickJumpToSymbol is set to false", ->
     beforeEach ->
-      atom.config.set('symbols-view-plus.quickJumpToFileSymbol', false)
+      atom.config.set('symbols-view-plus.originalConfigurations.quickJumpToFileSymbol', false)
       waitsForPromise ->
         atom.workspace.open(directory.resolve('sample.js'))
 

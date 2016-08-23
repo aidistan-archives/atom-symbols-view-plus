@@ -47,7 +47,7 @@ class FileView extends SymbolsView
 
   selectItemView: ->
     super
-    if atom.config.get('symbols-view-plus.quickJumpToFileSymbol')
+    if atom.config.get('symbols-view-plus.originalConfigurations.quickJumpToFileSymbol')
       item = @getSelectedItem()
       @openTag(item) if item?
 
@@ -61,7 +61,7 @@ class FileView extends SymbolsView
     if @panel.isVisible()
       @cancel()
     else if filePath = @getPath()
-      if atom.config.get('symbols-view-plus.quickJumpToFileSymbol') and editor = @getEditor()
+      if atom.config.get('symbols-view-plus.originalConfigurations.quickJumpToFileSymbol') and editor = @getEditor()
         @initialState = @serializeEditorState(editor)
       @populate(filePath)
       @attach()
