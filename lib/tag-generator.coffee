@@ -3,7 +3,18 @@ path = require 'path'
 
 module.exports =
 class TagGenerator
-  constructor: (@path, @scopeName) ->
+  constructor: (@filepath, @scopeName) ->
+    packageRoot = @getPackageRoot()
+    @command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
+
+    defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
+    @args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
+    if atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
+      if language = @getLanguage()
+        @args.push("--language-force=#{language}")
+
+    @options = {}
+    @options.cwd = packageRoot if packageRoot = @getProjectRoot()
 
   getPackageRoot: ->
     packageRoot = path.resolve(__dirname, '..')
@@ -12,6 +23,13 @@ class TagGenerator
       if packageRoot.indexOf(resourcePath) is 0
         packageRoot = path.join("#{resourcePath}.unpacked", 'node_modules', 'symbols-view-plus')
     packageRoot
+
+  getProjectRoot: ->
+    for directory in atom.project.getDirectories()
+      dirPath = directory.getPath()
+      if dirPath is @filepath or directory.contains(@filepath)
+        return dirPath
+    return null
 
   parseTagLine: (line) ->
     sections = line.split('\t')
@@ -23,7 +41,7 @@ class TagGenerator
       null
 
   getLanguage: ->
-    return 'Cson' if path.extname(@path) in ['.cson', '.gyp']
+    return 'Cson' if path.extname(@filepath) in ['.cson', '.gyp']
 
     switch @scopeName
       when 'source.c'        then 'C'
@@ -55,22 +73,16 @@ class TagGenerator
       when 'text.html.php'   then 'Php'
 
   generate: ->
-    tags = {}
-    packageRoot = @getPackageRoot()
-    command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
-    defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
-    args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
-
-    if atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
-      if language = @getLanguage()
-        args.push("--language-force=#{language}")
-
-    args.push('-nf', '-', @path)
+    args = Array.from(@args)
+    args.push('-nf', '-', @filepath)
 
     new Promise (resolve) =>
+      tags = {}
+
       new BufferedProcess({
-        command: command,
-        args: args,
+        @command,
+        args,
+        @options,
         stdout: (lines) =>
           for line in lines.split('\n')
             if tag = @parseTagLine(line)
@@ -80,43 +92,21 @@ class TagGenerator
           tags = (tag for row, tag of tags)
           resolve(tags)
 
-          @generateFileSymbols() if atom.config.get('symbols-view-plus.plusConfigurations.updateProjectTagsAfterTogglingFileSymbols')
+          if atom.config.get('symbols-view-plus.plusConfigurations.updateProjectTagsAfterTogglingFileSymbols')
+            if @options.cwd
+              args = Array.from(@args)
+              args.push('--append=yes', '-f', '.tags', @filepath)
+
+              new BufferedProcess({@command, args, @options})
       })
 
-  generateFileSymbols: ->
-    for directory in atom.project.getDirectories()
-      dirPath = directory.getPath()
-      if dirPath is @path or directory.contains(@path)
-        projectPath = dirPath
-        break
-    return unless projectPath?
-
-    tags = {}
-    packageRoot = @getPackageRoot()
-    command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
-    defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
-    args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
-
-    if atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
-      if language = @getLanguage()
-        args.push("--language-force=#{language}")
-
-    args.push('--append=yes', '-f', '.tags', @path.replace(projectPath, '.'))
-
-    options = {cwd: projectPath}
-    new BufferedProcess({command, args, options})
-
   generateProjectSymbols: ->
-    tags = {}
-    packageRoot = @getPackageRoot()
-    command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
-    defaultCtagsFile = path.join(packageRoot, 'lib', 'ctags-config')
-    args = ["--options=#{defaultCtagsFile}", '--fields=+KS']
+    args = Array.from(@args)
+    options = Array.from(@options)
 
     args.push(atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsWhenGeneratingProjectSymbols'))
-
     args.push('-f', '.tags', '-R', './')
 
-    atom.project.getDirectories().forEach (directory) ->
-      options = {cwd: directory.getPath()}
-      new BufferedProcess({command, args, options})
+    atom.project.getDirectories().forEach (directory) =>
+      options.cwd = directory.getPath()
+      new BufferedProcess({@command, args, options})

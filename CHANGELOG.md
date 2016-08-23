@@ -1,4 +1,5 @@
 ## Dev version
+- Update TagGenerator for better cwd handling
 
 ## 0.113.1-plus.1
 - Employ AppVeyor CI and Travis CI
