@@ -1,5 +1,9 @@
 ## Dev version
 
+## 0.113.1-plus.1
+- Employ AppVeyor CI and Travis CI
+- Check dependencies with Gemnasium
+
 ## 0.113.0-plus.4
 - Allow more package configurations
 - Provide a new theme of symbols view
