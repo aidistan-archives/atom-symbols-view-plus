@@ -6,8 +6,6 @@
 
 An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
-**Due to [atom/apm#575](https://github.com/atom/apm/issues/575), please use `apm install aidistan/atom-symbols-view-plus` to install this package.**
-
 ## Features
 
 - Generate project symbols
