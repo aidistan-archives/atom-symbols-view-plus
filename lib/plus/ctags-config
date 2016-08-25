@@ -1,0 +1,15 @@
+--langdef=Vue
+--langmap=Vue:.vue
+--regex-Vue=/^[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/\1/f,function/
+
+--langdef=sql
+--langmap=sql:.sql
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(table)[\t]+([^.]+\.)?([a-zA-Z0-9_@.]+)/\4/t,table/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(procedure|package)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/p,procedure/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(function)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/f,function/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(trigger)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/r,trigger/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(event)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/e,event/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(index)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/i,index/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9\t]*)?(publication|subscription to|synchronization user)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/m,mobilink/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(variable)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/v,variable/i
+--regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9\t]*)?(rule|schema|server|datatype|database|message)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/o,other/i
