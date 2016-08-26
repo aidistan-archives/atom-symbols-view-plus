@@ -8,27 +8,23 @@ class AutocompleteProvider
 
   constructor: ->
     @tags = []
-    @startTask()
+    @start()
 
-  stopTask: ->
-    @loadTagsTask?.terminate()
-
-  startTask: ->
-    @stopTask()
+  start: ->
     @loadTagsTask = TagReader.getAllTags (@tags) =>
     @watchTagsFiles()
 
   watchTagsFiles: ->
     @unwatchTagsFiles()
-
     @tagsFileSubscriptions = new CompositeDisposable()
 
     for projectPath in atom.project.getPaths()
       if tagsFilePath = getTagsFile(projectPath)
         tagsFile = new File(tagsFilePath)
-        @tagsFileSubscriptions.add(tagsFile.onDidChange(@startTask))
-        @tagsFileSubscriptions.add(tagsFile.onDidDelete(@startTask))
-        @tagsFileSubscriptions.add(tagsFile.onDidRename(@startTask))
+        restart = => @loadTagsTask?.terminate(); @start()
+        @tagsFileSubscriptions.add(tagsFile.onDidChange(restart))
+        @tagsFileSubscriptions.add(tagsFile.onDidDelete(restart))
+        @tagsFileSubscriptions.add(tagsFile.onDidRename(restart))
 
   unwatchTagsFiles: ->
     @tagsFileSubscriptions?.dispose()
