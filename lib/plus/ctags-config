@@ -2,7 +2,6 @@
 --langmap=Vue:.vue
 --regex-Vue=/^[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/\1/f,function/
 
---langdef=sql
 --langmap=sql:.sql
 --regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(table)[\t]+([^.]+\.)?([a-zA-Z0-9_@.]+)/\4/t,table/i
 --regex-sql=/^[ \t]*create[ \t]+([a-zA-Z0-9 \t]*)?(procedure|package)[\t]+([^.]+\.)?"?([a-zA-Z0-9_@.]+)/\4/p,procedure/i
