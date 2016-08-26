@@ -6,7 +6,7 @@ getTagsFile = require '../get-tags-file'
 module.exports =
 class AutocompleteProvider
 
-  constructor: (@projectView) ->
+  constructor: ->
     @tags = []
     @startTask()
 
