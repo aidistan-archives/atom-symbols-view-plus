@@ -60,7 +60,7 @@ class SymbolsView extends SelectListView
               @div class: 'primary-line', =>
                 @span class: 'icon icon-' + kind.replace(' ', '-')
                 @span => SymbolsView.highlightMatches(this, name, matches)
-            @div file, class: 'secondary-line'
+            @div file.replace(directory, ''), class: 'secondary-line'
 
     $$ ->
       @li class: 'two-lines', =>
@@ -68,7 +68,7 @@ class SymbolsView extends SelectListView
           @div "#{name}:#{position.row + 1}", class: 'primary-line'
         else
           @div class: 'primary-line', => SymbolsView.highlightMatches(this, name, matches)
-        @div file, class: 'secondary-line'
+        @div file.replace(directory, ''), class: 'secondary-line'
 
   getEmptyMessage: (itemCount) ->
     if itemCount is 0
