@@ -1,5 +1,9 @@
 ## Dev version
 
+## 0.113.1-plus.4
+- Improve UI
+- Add screenshots to README.md
+
 ## 0.113.1-plus.3
 - Improve TagGenerator a little
 - Fix known bugs
