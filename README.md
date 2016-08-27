@@ -21,7 +21,18 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
 Basic usage is the same as [atom/symbols-view](https://atom.io/packages/symbols-view), which should be familiar to all Atom users.
 
-To generate project symbols, type `generate project symbols` in the Command Palette (`ctrl+shift+p` or `cmd+shift+p`) and press `Enter`. A *.tags* file will be generated at the root of your project in a few seconds and you may want to [gitignore *.tags* files globally](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore).
+### To generate project symbols
+
+Type `generate project symbols` in the Command Palette (`ctrl+shift+p` or `cmd+shift+p`) and press `Enter`. A *.tags* file will be generated at the root of your project in a few seconds and you may want to [gitignore *.tags* files globally](https://help.github.com/articles/ignoring-files/#create-a-global-gitignore).
+
+### To use *.ctags* to provide extra CTAGS options
+
+There are three option files CTAGS read from: (low priority to high priority)
+- *$PROJECT_ROOT/.ctags* (if exists)
+- *$PACKAGE_ROOT/lib/ctags-config* (options from `symbols-view`)
+- *$PACKAGE_ROOT/lib/plus/ctags-config* (additional options)
+
+Thus, you could create a *.ctags* at the root of your project and add CTAGS options into it.
 
 ## License
 
