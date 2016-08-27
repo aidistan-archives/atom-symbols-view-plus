@@ -19,7 +19,7 @@ class OnFileChangeUpdater
         generateFileSymbols = ->
           new TagGenerator(editor.getPath(), editor.getGrammar()?.scopeName).generateFileSymbols()
         generateProjectSymbols = ->
-          new TagGenerator(null, null).generateProjectSymbols()
+          new TagGenerator(editor.getPath()).generateProjectSymbols()
 
         editorSubscriptions = new CompositeDisposable()
         editorSubscriptions.add(editor.onDidChangeGrammar(generateFileSymbols))

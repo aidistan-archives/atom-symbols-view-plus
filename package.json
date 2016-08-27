@@ -44,34 +44,41 @@
       "title": "Plus Configurations",
       "type": "object",
       "properties": {
-        "extraCommandArgumentsWhenGeneratingProjectSymbols": {
-          "title": "Extra Command Arguments When Generating Project Symbols",
-          "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which usually are exclusive patterns, when generating project symbols, like `--exclude=node_modules --exclude=spec --exclude=*.html`. Default is to exclude all files ignored by git.",
+        "extraCommandArguments": {
+          "title": "Extra Command Arguments For CTAGS",
+          "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which could be an option file for overriding, like `--options=ctags-config`. Default is an empty string.",
           "order": 1,
+          "type": "string",
+          "default": ""
+        },
+        "extraCommandArgumentsWhenGeneratingProjectSymbols": {
+          "title": "Extra Command Arguments For CTAGS When Generating Project Symbols",
+          "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which usually are exclusive patterns, when generating project symbols, like `--exclude=node_modules --exclude=spec --exclude=*.html`. Default is to exclude all files ignored by git.",
+          "order": 2,
           "type": "string",
           "default": "--exclude=@.gitignore"
         },
         "updateProjectTagsAfterTogglingFileSymbols": {
           "title": "Update Project Tags After Toggling File Symbols",
-          "order": 2,
+          "order": 3,
           "type": "boolean",
           "default": "true"
         },
         "updateProjectTagsOnFileChange": {
           "title": "Update Project Tags On File Change",
-          "order": 3,
+          "order": 4,
           "type": "boolean",
           "default": "false"
         },
         "provideServiceForAutocomplete": {
           "title": "Provide Service For Autocomplete",
-          "order": 4,
+          "order": 5,
           "type": "boolean",
           "default": "true"
         },
         "symbolsViewTheme": {
           "title": "Symbols View Theme",
-          "order": 5,
+          "order": 6,
           "type": "string",
           "default": "Right Panel (like 7ute/symbols-list)",
           "enum": [

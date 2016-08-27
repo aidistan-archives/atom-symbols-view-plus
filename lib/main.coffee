@@ -12,7 +12,7 @@ module.exports =
     @workspaceSubscription = atom.commands.add 'atom-workspace',
       'symbols-view-plus:toggle-project-symbols': => @createProjectView().toggle()
       'symbols-view-plus:generate-project-symbols': ->
-        new TagGenerator(null, null).generateProjectSymbols()
+        new TagGenerator(atom.workspace.getActiveTextEditor()?.getPath()).generateProjectSymbols()
 
     @editorSubscription = atom.commands.add 'atom-text-editor',
       'symbols-view-plus:toggle-file-symbols': => @createFileView().toggle()

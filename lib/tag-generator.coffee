@@ -8,16 +8,15 @@ class TagGenerator
     @command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
 
     @args = [
-      "--options=#{path.join(packageRoot, 'lib', 'plus', 'ctags-config')}",
       "--options=#{path.join(packageRoot, 'lib', 'ctags-config')}",
-      '--fields=+KS'
+      "--options=#{path.join(packageRoot, 'lib', 'plus', 'ctags-config')}"
     ]
-    if atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
-      if language = @getLanguage()
-        @args.push("--language-force=#{language}")
+    val = atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArguments')
+    @args.push(val) if val isnt ''
+    @args.push('--fields=+K')
 
     @options = {}
-    @options.cwd = packageRoot if packageRoot = @getProjectRoot()
+    @options.cwd = projectRoot if projectRoot = @getProjectRoot()
 
   getPackageRoot: ->
     packageRoot = path.resolve(__dirname, '..')
@@ -40,6 +39,7 @@ class TagGenerator
       position: new Point(parseInt(sections[2]) - 1)
       name: sections[0]
       kind: sections[3]
+      parent: sections[4]
     else
       null
 
@@ -75,9 +75,16 @@ class TagGenerator
       when 'text.html'       then 'Html'
       when 'text.html.php'   then 'Php'
 
-  generate: ->
+  # To be compatible with atom/symbols-view
+  generate: -> @generateFileSymbols()
+
+  generateFileSymbols: ->
     args = Array.from(@args)
-    args.push('-nf', '-', @filepath)
+
+    if atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
+      if language = @getLanguage()
+        args.push("--language-force=#{language}")
+    args.push('-n', '-o', '-', @filepath)
 
     new Promise (resolve) =>
       tags = {}
@@ -97,8 +104,8 @@ class TagGenerator
 
           if atom.config.get('symbols-view-plus.plusConfigurations.updateProjectTagsAfterTogglingFileSymbols')
             if @options.cwd
-              args = Array.from(@args)
-              args.push('--append=yes', '-f', '.tags', @filepath)
+              args.pop() for time in [1..4]
+              args.push('--append=yes', '-o', '.tags', @filepath)
 
               new BufferedProcess({@command, args, @options})
       })
@@ -107,8 +114,9 @@ class TagGenerator
     args = Array.from(@args)
     options = Array.from(@options)
 
-    args.push(atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsWhenGeneratingProjectSymbols'))
-    args.push('-f', '.tags', '-R', './')
+    val = atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsWhenGeneratingProjectSymbols')
+    args.push(val) if val isnt ''
+    args.push('-o', '.tags', '-R', './')
 
     atom.project.getDirectories().forEach (directory) =>
       options.cwd = directory.getPath()
