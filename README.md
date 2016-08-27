@@ -17,11 +17,15 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 - Provide a new theme of symbols view
   - Right-sidebar theme now works as default
 
+![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/file-symbols.png)
+Screenshot of File Symbols
+
+![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/project-symbols.png)
+Screenshot of Project Symbols
+
 ## Usage
 
-Basic usage is the same as [atom/symbols-view](https://atom.io/packages/symbols-view), which should be familiar to all Atom users.
-
-Refer to [the wiki](https://github.com/aidistan/atom-symbols-view-plus/wiki) for advanced usage.
+Basically the same as [atom/symbols-view](https://atom.io/packages/symbols-view), refer to [the wiki](https://github.com/aidistan/atom-symbols-view-plus/wiki) for advanced usage.
 
 ## License
 
