@@ -1,5 +1,6 @@
 ## Dev version
 - Recommend to use `.ctags` file for each project now
+- Update the content of the wiki and screenshots
 
 ## 0.113.1-plus.4
 - Improve UI
