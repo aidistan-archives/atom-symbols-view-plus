@@ -7,12 +7,8 @@ class TagGenerator
     packageRoot = @getPackageRoot()
     @command = path.join(packageRoot, 'vendor', "ctags-#{process.platform}")
 
-    @args = [
-      "--options=#{path.join(packageRoot, 'lib', 'ctags-config')}",
-      "--options=#{path.join(packageRoot, 'lib', 'plus', 'ctags-config')}"
-    ]
-    val = atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArguments')
-    @args.push(val) if val isnt ''
+    @args = ["--options=#{path.join(packageRoot, 'lib', 'ctags-config')}"]
+    @args.push(val) if (val = atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArguments')) isnt ''
     @args.push('--fields=+K')
 
     @options = {}
@@ -80,10 +76,7 @@ class TagGenerator
 
   generateFileSymbols: ->
     args = Array.from(@args)
-
-    if atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
-      if language = @getLanguage()
-        args.push("--language-force=#{language}")
+    args.push("--language-force=#{language}") if (language = @getLanguage()) and atom.config.get('symbols-view-plus.originalConfigurations.useEditorGrammarAsCtagsLanguage')
     args.push('-n', '-o', '-', @filepath)
 
     new Promise (resolve) =>
@@ -114,8 +107,7 @@ class TagGenerator
     args = Array.from(@args)
     options = Array.from(@options)
 
-    val = atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsWhenGeneratingProjectSymbols')
-    args.push(val) if val isnt ''
+    args.push(val) if (val = atom.config.get('symbols-view-plus.plusConfigurations.extraCommandArgumentsWhenGeneratingProjectSymbols')) isnt ''
     args.push('-o', '.tags', '-R', './')
 
     atom.project.getDirectories().forEach (directory) =>
