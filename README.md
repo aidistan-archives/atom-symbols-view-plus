@@ -1,7 +1,7 @@
 # Symbols View Plus package
 
-[![Build Status](https://travis-ci.org/aidistan/atom-symbols-view-plus.svg?branch=master)](https://travis-ci.org/aidistan/atom-symbols-view-plus)
-[![Build status](https://ci.appveyor.com/api/projects/status/xwvan82oo42t6qmu?svg=true)](https://ci.appveyor.com/project/aidistan/atom-symbols-view-plus)
+[![macOS Build Status](https://travis-ci.org/aidistan/atom-symbols-view-plus.svg?branch=master)](https://travis-ci.org/aidistan/atom-symbols-view-plus)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/xwvan82oo42t6qmu?svg=true)](https://ci.appveyor.com/project/aidistan/atom-symbols-view-plus)
 [![Dependency Status](https://gemnasium.com/badges/github.com/aidistan/atom-symbols-view-plus.svg)](https://gemnasium.com/github.com/aidistan/atom-symbols-view-plus)
 
 An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)

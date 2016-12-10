@@ -70,6 +70,7 @@ class TagGenerator
       when 'source.yaml'     then 'Yaml'
       when 'text.html'       then 'Html'
       when 'text.html.php'   then 'Php'
+      when 'text.tex.latex'  then 'Latex'
 
   # To be compatible with atom/symbols-view
   generate: -> @generateFileSymbols()
