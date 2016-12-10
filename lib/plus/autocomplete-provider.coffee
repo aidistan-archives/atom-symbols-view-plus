@@ -37,10 +37,15 @@ class AutocompleteProvider
   excludeLowerPriority: false
 
   getSuggestions: ({editor, bufferPosition, scopeDescriptor, prefix, activatedManually}) ->
+    # Check the service status
     return null unless atom.config.get('symbols-view-plus.plusConfigurations.provideServiceForAutocomplete')
 
+    # Check the prefix length
+    minimumWordLength = atom.config.get('autocomplete-plus.minimumWordLength')
+    return null unless minimumWordLength? and prefix.length >= minimumWordLength
+
     filter(@tags, prefix, key: 'name', maxResults: @maxResults)
-      .map (tag) ->
-        text: tag.name
-        type: tag.kind
-        description: tag.file
+    .map (tag) ->
+      text: tag.name
+      type: tag.kind
+      description: tag.file
