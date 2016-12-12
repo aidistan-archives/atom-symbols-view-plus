@@ -76,9 +76,16 @@
           "type": "boolean",
           "default": "true"
         },
+        "provideArgumentsForAutocomplete": {
+          "title": "Provide Arguments For Autocomplete (Experimental)",
+          "description": "Work with \"Provide Service For Autocomplete\" together, try to provide function parameter completion.",
+          "order": 6,
+          "type": "boolean",
+          "default": "true"
+        },
         "symbolsViewTheme": {
           "title": "Symbols View Theme",
-          "order": 6,
+          "order": 7,
           "type": "string",
           "default": "Right Panel (like 7ute/symbols-list)",
           "enum": [

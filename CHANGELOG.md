@@ -1,5 +1,8 @@
 ## Dev version
 
+## 0.113.2-plus.4
+- Add a switch to enable/disable function argument completions
+
 ## 0.113.2-plus.3
 - Add leftLabel and rightLabel for auto-complete suggestions
 

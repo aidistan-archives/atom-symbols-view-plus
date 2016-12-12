@@ -49,20 +49,22 @@ class AutocompleteProvider
       patternStr = tag.pattern.substring(2, tag.pattern.length - 2)
 
       # Try to make a snippet
-      if tag.kind is "require"
-        snippet = patternStr
-      if tag.kind is "function"
-        # Get the return type
-        leftLabel = patternStr.substring(0, patternStr.indexOf(tag.name) - 1)
-        # Get rid of any chars before the symbol
-        snippet = patternStr.substring(patternStr.indexOf(tag.name), patternStr.length)
-        # Get rid of the brace at line end if exists
-        snippet = snippet.replace(/\s*{\s*/, '')
+      if atom.config.get('symbols-view-plus.plusConfigurations.provideArgumentsForAutocomplete')
+        if tag.kind is "require"
+          snippet = patternStr
+        if tag.kind is "function"
+          # Get the return type
+          leftLabel = patternStr.substring(0, patternStr.indexOf(tag.name) - 1)
+          # Get rid of any chars before the symbol
+          snippet = patternStr.substring(patternStr.indexOf(tag.name), patternStr.length)
+          # Get rid of the brace at line end if exists
+          snippet = snippet.replace(/\s*{\s*/, '')
+
+        rightLabel = tag.kind
 
       return {
         text: tag.name
         type: tag.kind
-        rightLabel: tag.kind
         description: tag.file
-        leftLabel, snippet
+        leftLabel, snippet, rightLabel
       }
