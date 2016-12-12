@@ -1,5 +1,8 @@
 ## Dev version
 
+## 0.113.2-plus.3
+- Add leftLabel and rightLabel for auto-complete suggestions
+
 ## 0.113.2-plus.2
 - Try to make a snippet when providing auto completions
 

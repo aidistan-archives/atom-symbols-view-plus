@@ -44,24 +44,25 @@ class AutocompleteProvider
     minimumWordLength = atom.config.get('autocomplete-plus.minimumWordLength')
     return null unless minimumWordLength? and prefix.length >= minimumWordLength
 
-    filter(@tags, prefix, key: 'name', maxResults: @maxResults)
-    .map (tag) =>
-      text: tag.name
-      description: tag.file
-      type: tag.kind
-      snippet: @makeSnippet(tag)
+    filter(@tags, prefix, key: 'name', maxResults: @maxResults).map (tag) ->
+      # Get rid of "/^" and "$/"
+      patternStr = tag.pattern.substring(2, tag.pattern.length - 2)
 
-  # Try to make a snippet
-  makeSnippet: (tag) ->
-    snippet = @patternToString(tag.pattern)
-    if tag.kind is "require"
-      return snippet
-    if tag.kind is "function"
-      # Get rid of any chars before the symbol
-      snippet = snippet.substring(snippet.indexOf(tag.name), snippet.length)
-      # Get rid of the brace at line end if exists
-      snippet = snippet.replace(/\s*{\s*/, '')
-      return snippet
+      # Try to make a snippet
+      if tag.kind is "require"
+        snippet = patternStr
+      if tag.kind is "function"
+        # Get the return type
+        leftLabel = patternStr.substring(0, patternStr.indexOf(tag.name) - 1)
+        # Get rid of any chars before the symbol
+        snippet = patternStr.substring(patternStr.indexOf(tag.name), patternStr.length)
+        # Get rid of the brace at line end if exists
+        snippet = snippet.replace(/\s*{\s*/, '')
 
-  # Get rid of "/^" and "$/"
-  patternToString: (pattern) -> pattern.substring(2, pattern.length - 2)
+      return {
+        text: tag.name
+        type: tag.kind
+        rightLabel: tag.kind
+        description: tag.file
+        leftLabel, snippet
+      }
