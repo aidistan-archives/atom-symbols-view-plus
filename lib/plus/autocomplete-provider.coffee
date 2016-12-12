@@ -45,7 +45,23 @@ class AutocompleteProvider
     return null unless minimumWordLength? and prefix.length >= minimumWordLength
 
     filter(@tags, prefix, key: 'name', maxResults: @maxResults)
-    .map (tag) ->
+    .map (tag) =>
       text: tag.name
-      type: tag.kind
       description: tag.file
+      type: tag.kind
+      snippet: @makeSnippet(tag)
+
+  # Try to make a snippet
+  makeSnippet: (tag) ->
+    snippet = @patternToString(tag.pattern)
+    if tag.kind is "require"
+      return snippet
+    if tag.kind is "function"
+      # Get rid of any chars before the symbol
+      snippet = snippet.substring(snippet.indexOf(tag.name), snippet.length)
+      # Get rid of the brace at line end if exists
+      snippet = snippet.replace(/\s*{\s*/, '')
+      return snippet
+
+  # Get rid of "/^" and "$/"
+  patternToString: (pattern) -> pattern.substring(2, pattern.length - 2)
