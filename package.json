@@ -1,17 +1,18 @@
 {
-  "name": "symbols-view",
+  "name": "symbols-view-plus",
   "version": "0.116.1",
   "main": "./lib/main",
-  "description": "Jump to a function/method in the current editor with `cmd-r`.",
+  "description": "An alternative to atom/symbols-view",
   "license": "MIT",
   "activationCommands": {
     "atom-workspace": [
-      "symbols-view:toggle-project-symbols"
+      "symbols-view-plus:toggle-project-symbols",
+      "symbols-view-plus:generate-project-symbols"
     ],
     "atom-text-editor": [
-      "symbols-view:go-to-declaration",
-      "symbols-view:return-from-declaration",
-      "symbols-view:toggle-file-symbols"
+      "symbols-view-plus:go-to-declaration",
+      "symbols-view-plus:return-from-declaration",
+      "symbols-view-plus:toggle-file-symbols"
     ]
   },
   "dependencies": {
@@ -25,18 +26,81 @@
     "underscore-plus": "^1.6.6"
   },
   "configSchema": {
-    "useEditorGrammarAsCtagsLanguage": {
-      "default": true,
-      "type": "boolean",
-      "description": "Force ctags to use the name of the current file's language in Atom when generating tags. By default, ctags automatically selects the language of a source file, ignoring those files whose language cannot be determined. This option forces the specified language to be used instead of automatically selecting the language based upon its extension."
+    "originalConfigurations": {
+      "title": "Original Configurations",
+      "type": "object",
+      "properties": {
+        "useEditorGrammarAsCtagsLanguage": {
+          "title": "Use Editor Grammar As Ctags Language",
+          "description": "Force ctags to use the name of the current file's language in Atom when generating tags. By default, ctags automatically selects the language of a source file, ignoring those files whose language cannot be determined. This option forces the specified language to be used instead of automatically selecting the language based upon its extension.",
+          "type": "boolean",
+          "default": true
+        },
+        "quickJumpToFileSymbol": {
+          "title": "Quick Jump To File Symbol",
+          "description": "Automatically visit selected file-symbols",
+          "type": "boolean",
+          "default": true
+        }
+      }
     },
-    "quickJumpToFileSymbol": {
-      "default": true,
-      "type": "boolean",
-      "description": "Automatically visit selected file-symbols"
+    "plusConfigurations": {
+      "title": "Plus Configurations",
+      "type": "object",
+      "properties": {
+        "extraCommandArguments": {
+          "title": "Extra Command Arguments For CTAGS",
+          "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which could be an option file for overriding, like `--options=ctags-config`. Default is an empty string.",
+          "order": 1,
+          "type": "string",
+          "default": ""
+        },
+        "extraCommandArgumentsWhenGeneratingProjectSymbols": {
+          "title": "Extra Command Arguments For CTAGS When Generating Project Symbols",
+          "description": "Add extra [ctag command arguments](http://ctags.sourceforge.net/ctags.html), which usually are exclusive patterns, when generating project symbols, like `--exclude=node_modules --exclude=spec --exclude=*.html`. Default is to exclude all files ignored by git.",
+          "order": 2,
+          "type": "string",
+          "default": "--exclude=@.gitignore"
+        },
+        "updateProjectTagsAfterTogglingFileSymbols": {
+          "title": "Update Project Tags After Toggling File Symbols",
+          "order": 3,
+          "type": "boolean",
+          "default": "true"
+        },
+        "updateProjectTagsOnFileChange": {
+          "title": "Update Project Tags On File Change",
+          "order": 4,
+          "type": "boolean",
+          "default": "false"
+        },
+        "provideServiceForAutocomplete": {
+          "title": "Provide Service For Autocomplete",
+          "order": 5,
+          "type": "boolean",
+          "default": "true"
+        },
+        "provideArgumentsForAutocomplete": {
+          "title": "Provide Arguments For Autocomplete (Experimental)",
+          "description": "Work with \"Provide Service For Autocomplete\" together, try to provide function parameter completion.",
+          "order": 6,
+          "type": "boolean",
+          "default": "true"
+        },
+        "symbolsViewTheme": {
+          "title": "Symbols View Theme",
+          "order": 7,
+          "type": "string",
+          "default": "Right Panel (like 7ute/symbols-list)",
+          "enum": [
+            "Right Panel (like 7ute/symbols-list)",
+            "Modal Panel (like atom/symbols-view)"
+          ]
+        }
+      }
     }
   },
-  "repository": "https://github.com/atom/symbols-view",
+  "repository": "https://github.com/aidistan/atom-symbols-view-plus",
   "engines": {
     "atom": "*"
   },

@@ -1,17 +1,42 @@
-# Symbols View package
-[![macOS Build Status](https://travis-ci.org/atom/symbols-view.svg?branch=master)](https://travis-ci.org/atom/symbols-view) [![Windows Build Status](https://ci.appveyor.com/api/projects/status/al68vtv83x49eu5d/branch/master?svg=true)](https://ci.appveyor.com/project/Atom/symbols-view/branch/master) [![Dependency Status](https://david-dm.org/atom/symbols-view.svg)](https://david-dm.org/atom/symbols-view)
+# Symbols View Plus package
 
-Display the list of functions/methods in the editor.
+[![macOS Build Status](https://travis-ci.org/aidistan/atom-symbols-view-plus.svg?branch=master)](https://travis-ci.org/aidistan/atom-symbols-view-plus)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/xwvan82oo42t6qmu?svg=true)](https://ci.appveyor.com/project/aidistan/atom-symbols-view-plus)
+[![Dependency Status](https://gemnasium.com/badges/github.com/aidistan/atom-symbols-view-plus.svg)](https://gemnasium.com/github.com/aidistan/atom-symbols-view-plus)
 
-If your project has a `tags`/`.tags`/`TAGS`/`.TAGS` file at the root then following are supported:
+An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 
-|Command|Description|Keybinding (Linux)|Keybinding (macOS)|Keybinding (Windows)|
-|-------|-----------|------------------|-----------------|--------------------|
-|`symbols-view:toggle-file-symbols`|Show all symbols in current file|<kbd>ctrl-r</kbd>|<kbd>cmd-r</kbd>|<kbd>ctrl-r</kbd>|
-|`symbols-view:toggle-project-symbols`|Show all symbols in the project|<kbd>ctrl-shift-r</kbd>|<kbd>cmd-shift-r</kbd>|<kbd>ctrl-shift-r</kbd>|
-|`symbols-view:go-to-declaration`|Jump to the symbol under the cursor|<kbd>ctrl-alt-down</kbd>|<kbd>cmd-alt-down</kbd>||
-|`symbols-view:return-from-declaration`|Return from the jump|<kbd>ctrl-alt-up</kbd>|<kbd>cmd-alt-up</kbd>||
+## Features
 
-This package uses [ctags](http://ctags.sourceforge.net).
+- Generate project symbols
+  - Provide a command to generate the tag file of whole project
+  - Update the project tag file incrementally on file save
+  - Allow user to add extra ctag command arguments
+- Provide service for autocomplete-plus
+  - Project symbols are provided for autocomplete-plus automatically
+- Provide a new theme of symbols view
+  - Right-sidebar theme now works as default
 
-![](https://f.cloud.github.com/assets/671378/2241860/30ef0b2e-9ce8-11e3-86e2-2c17c0885fa4.png)
+## Usage
+
+Basically the same as [atom/symbols-view](https://atom.io/packages/symbols-view), refer to [the wiki](https://github.com/aidistan/atom-symbols-view-plus/wiki) for advanced usage and faqs.
+
+## Screenshots
+
+### File Symbols
+![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/file-symbols.png)
+
+### Project Symbols
+![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/project-symbols.png)
+
+## License
+
+[The MIT License](https://github.com/aidistan/atom-symbols-view-plus/blob/master/LICENSE.md)
+
+## References
+
+- [atom/symbols-view](https://github.com/atom/symbols-view) : Jump to symbols in Atom
+- [atom/autocomplete-plus](https://github.com/atom/autocomplete-plus) : View and insert possible completions in the editor while typing
+- [yongkangchen/atom-ctags](https://github.com/yongkangchen/atom-ctags) : Better autocomplete for atom, using ctags
+- [7ute/symbols-list](https://github.com/7ute/symbols-list) : An alternate symbol list sidebar for Atom.io text editor
+- [xndcn/symbols-tree-view](https://github.com/xndcn/symbols-tree-view) : A symbols view like taglist for Atom.io

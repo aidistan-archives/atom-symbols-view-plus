@@ -1,18 +1,18 @@
 '.platform-darwin atom-text-editor':
-  'cmd-r': 'symbols-view:toggle-file-symbols'
-  'cmd-alt-down': 'symbols-view:go-to-declaration'
-  'cmd-alt-up': 'symbols-view:return-from-declaration'
+  'cmd-r': 'symbols-view-plus:toggle-file-symbols'
+  'cmd-alt-down': 'symbols-view-plus:go-to-declaration'
+  'cmd-alt-up': 'symbols-view-plus:return-from-declaration'
 
 '.platform-win32 atom-text-editor':
-  'ctrl-r': 'symbols-view:toggle-file-symbols'
+  'ctrl-r': 'symbols-view-plus:toggle-file-symbols'
 
 '.platform-linux atom-text-editor':
-  'ctrl-r': 'symbols-view:toggle-file-symbols'
-  'ctrl-alt-down': 'symbols-view:go-to-declaration'
-  'ctrl-alt-up': 'symbols-view:return-from-declaration'
+  'ctrl-r': 'symbols-view-plus:toggle-file-symbols'
+  'ctrl-alt-down': 'symbols-view-plus:go-to-declaration'
+  'ctrl-alt-up': 'symbols-view-plus:return-from-declaration'
 
 '.platform-darwin':
-  'cmd-shift-r': 'symbols-view:toggle-project-symbols'
+  'cmd-shift-r': 'symbols-view-plus:toggle-project-symbols'
 
 '.platform-win32, .platform-linux':
-  'ctrl-shift-r': 'symbols-view:toggle-project-symbols'
+  'ctrl-shift-r': 'symbols-view-plus:toggle-project-symbols'
