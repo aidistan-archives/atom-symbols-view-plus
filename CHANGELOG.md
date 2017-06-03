@@ -1,5 +1,9 @@
 ## Dev version
+
+## 0.116.1-plus.1
 - Fork from atom/symbols-view-0.116.1
+- Add a new theme: Dock Item
+- Fix several minor bugs
 
 ## 0.113.2-plus.4
 - Add a switch to enable/disable function argument completions
