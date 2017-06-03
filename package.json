@@ -87,8 +87,9 @@
           "title": "Symbols View Theme",
           "order": 7,
           "type": "string",
-          "default": "Right Panel (like 7ute/symbols-list)",
+          "default": "Dock Item (new feature from v1.17.x)",
           "enum": [
+            "Dock Item (new feature from v1.17.x)",
             "Right Panel (like 7ute/symbols-list)",
             "Modal Panel (like atom/symbols-view)"
           ]
