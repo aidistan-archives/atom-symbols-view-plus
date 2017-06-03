@@ -9,13 +9,14 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 ## Features
 
 - Generate project symbols
-  - Provide a command to generate the tag file of whole project
+  - Provide a command to generate the tag file for the whole project
   - Update the project tag file incrementally on file save
   - Allow user to add extra ctag command arguments
 - Provide service for autocomplete-plus
   - Project symbols are provided for autocomplete-plus automatically
-- Provide a new theme of symbols view
-  - Right-sidebar theme now works as default
+- Provide extra themes of symbols view
+  - Dock item theme **(the new default)**
+  - Right panel theme
 
 ## Usage
 
@@ -23,11 +24,11 @@ Basically the same as [atom/symbols-view](https://atom.io/packages/symbols-view)
 
 ## Screenshots
 
-### File Symbols
-![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/file-symbols.png)
+### Theme: dock item
+![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/theme-dock-item.png)
 
-### Project Symbols
-![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/project-symbols.png)
+### Theme: right panel
+![](https://raw.githubusercontent.com/aidistan/atom-symbols-view-plus/master/screenshots/theme-right-panel.png)
 
 ## License
 
