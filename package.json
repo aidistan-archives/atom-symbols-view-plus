@@ -4,16 +4,12 @@
   "main": "./lib/main",
   "description": "An alternative to atom/symbols-view",
   "license": "MIT",
-  "activationCommands": {
-    "atom-workspace": [
-      "symbols-view-plus:toggle-project-symbols",
-      "symbols-view-plus:generate-project-symbols"
-    ],
-    "atom-text-editor": [
-      "symbols-view-plus:go-to-declaration",
-      "symbols-view-plus:return-from-declaration",
-      "symbols-view-plus:toggle-file-symbols"
-    ]
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "provideAutocomplete"
+      }
+    }
   },
   "dependencies": {
     "async": "^0.2.6",
@@ -102,7 +98,7 @@
   },
   "repository": "https://github.com/aidistan/atom-symbols-view-plus",
   "engines": {
-    "atom": "*"
+    "atom": ">=1.7.0 <2.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
