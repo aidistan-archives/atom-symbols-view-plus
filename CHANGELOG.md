@@ -1,5 +1,9 @@
 ## Dev version
 
+## 0.116.1-plus.2
+- Imporve the README
+- Fix a few bugs for Windows users
+
 ## 0.116.1-plus.1
 - Fork from atom/symbols-view-0.116.1
 - Add a new theme: Dock Item
