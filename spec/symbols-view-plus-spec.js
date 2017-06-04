@@ -31,7 +31,7 @@ describe('SymbolsViewPlus', () => {
     await conditionPromise(() => fs.existsSync(directory.resolve('.tags')));
 
     const tags = fs.readFileSync(directory.resolve('.tags'), 'utf8');
-    expect(tags.split('\n').length).toBeGreaterThan(13);
+    expect(tags.split(/\n|\r\n/).length).toBeGreaterThan(13);
 
     fs.removeSync(directory.resolve('.tags'));
   });
