@@ -9,14 +9,18 @@ An alternative to [atom/symbols-view](https://atom.io/packages/symbols-view)
 ## Features
 
 - Generate project symbols
-  - Provide a command to generate the tag file for the whole project
+  - Provide a command to generate the tag file for the whole project (not supported on Windows, see the reason [here](https://github.com/aidistan/atom-symbols-view-plus/wiki/FAQ:-why-no-project-symbol-generation-on-Windows))
   - Update the project tag file incrementally on file save
   - Allow user to add extra ctag command arguments
 - Provide service for autocomplete-plus
   - Project symbols are provided for autocomplete-plus automatically
 - Provide extra themes of symbols view
-  - Dock item theme **(the new default)**
+  - Dock item theme
   - Right panel theme
+
+## Installation
+
+Install this package in Atom or using `apm install`, and read [this wiki page](https://github.com/aidistan/atom-symbols-view-plus/wiki/FAQ:-unable-to-install-on-Windows,-Linux-or-MacOS) when encountering errors.
 
 ## Usage
 

@@ -27,6 +27,8 @@ describe('SymbolsViewPlus', () => {
   });
 
   it('generates project symbols', async () => {
+    if (process.platform == 'win32') { return; } // not supported
+
     atom.commands.dispatch(getWorkspaceView(), 'symbols-view-plus:generate-project-symbols');
     await conditionPromise(() => fs.existsSync(directory.resolve('.tags')));
 
