@@ -1,5 +1,8 @@
 ## Dev version
 
+## 0.116.1-plus.3
+- Fix a bug in goto declaration
+
 ## 0.116.1-plus.2
 - Imporve the README
 - Fix a few bugs for Windows users
