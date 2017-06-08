@@ -11,6 +11,13 @@
       }
     }
   },
+  "consumedServices": {
+    "busy-signal": {
+      "versions": {
+        "1.0.0": "consumeBusySignal"
+      }
+    }
+  },
   "dependencies": {
     "async": "^0.2.6",
     "atom-select-list": "^0.1.0",
