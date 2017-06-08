@@ -1,5 +1,10 @@
 ## Dev version
 
+## 0.116.1-plus.4
+- Consume busy-signal service now
+- Improve user experiences
+- Fix several potential bugs
+
 ## 0.116.1-plus.3
 - Fix a bug in goto declaration
 
