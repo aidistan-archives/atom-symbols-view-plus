@@ -5,7 +5,7 @@ import path from 'path';
 import fs from 'fs-plus';
 import temp from 'temp';
 
-import {it, conditionPromise} from './async-spec-helpers';
+import {it, beforeEach, conditionPromise} from './async-spec-helpers';
 
 describe('SymbolsViewPlus', () => {
   let directory;
