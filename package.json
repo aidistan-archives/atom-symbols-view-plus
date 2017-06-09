@@ -1,9 +1,18 @@
 {
   "name": "symbols-view-plus",
   "version": "0.116.1-plus.4",
-  "main": "./lib/main",
   "description": "An alternative to atom/symbols-view",
+  "repository": "https://github.com/aidistan/atom-symbols-view-plus",
+  "keywors": [
+    "symbols",
+    "tags",
+    "taglist"
+  ],
   "license": "MIT",
+  "engines": {
+    "atom": ">=1.7.0 <2.0.0"
+  },
+  "main": "./lib/main",
   "providedServices": {
     "autocomplete.provider": {
       "versions": {
@@ -103,10 +112,6 @@
         }
       }
     }
-  },
-  "repository": "https://github.com/aidistan/atom-symbols-view-plus",
-  "engines": {
-    "atom": ">=1.7.0 <2.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
