@@ -1,6 +1,6 @@
 {
   "name": "symbols-view-plus",
-  "version": "0.116.1-plus.4",
+  "version": "0.117.0-plus",
   "description": "An alternative to atom/symbols-view",
   "repository": "https://github.com/aidistan/atom-symbols-view-plus",
   "keywors": [
