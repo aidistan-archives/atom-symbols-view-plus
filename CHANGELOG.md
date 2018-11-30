@@ -1,4 +1,5 @@
 ## Dev version
+- Merge with atom/symbols-view (fbce559)
 
 ## 0.116.1-plus.4
 - Consume busy-signal service now
