@@ -499,7 +499,7 @@ describe('SymbolsView', () => {
     });
 
     it('restores previous editor state on cancel', async () => {
-      const bufferRanges = [{start: {row: 0, column: 0}, end: {row: 0, column: 3}}];
+      const bufferRanges = [{start: {row: 0, column: 3}, end: {row: 0, column: 3}}];
       atom.workspace.getActiveTextEditor().setSelectedBufferRanges(bufferRanges);
       atom.commands.dispatch(getEditorView(), 'symbols-view-plus:toggle-file-symbols');
 
